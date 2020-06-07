@@ -9,7 +9,12 @@ class Compiler {
     compile(node) {
         let childNodes = node.childNodes;
         [...childNodes].forEach((child) => {
-            if (this.isElementNode(child)) { } else { }
+            if (this.isElementNode(child)) {
+                this.compileElement(child);
+                this.compile(child);
+            } else {
+                this.compileText(child);
+            }
         })
     }
     isDirective(attrName) {
