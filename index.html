@@ -4,34 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="./mvvm1.js"></script>
   </head>
   <body>
-    <div id="app">
-      <input type="text" v-model="user.name" />
-      <div>{{user.address}}</div>
-      <div v-html="html"></div>
-      <div>{{aaa}}</div>
-      <button v-on:click="alert">点我</button>
-    </div>
+    <iframe src="https://www.baidu.com/" id="bd" frameborder="0"></iframe>
     <script>
-      var vm = new Vue({
-        el: "#app",
-        data: {
-          user: { name: "lsz", address: "四川省成都市" },
-          html: "<div><span>qwer</span></div>",
-        },
-        methods: {
-          alert() {
-            window.alert("哗哗哗");
-          },
-        },
-        computed: {
-          aaa() {
-            return this.user.name + "哈哈哈哈哈哈哈";
-          },
-        },
-      });
+      var bdIframe = document.getElementById("bd");
+      console.log(bd.contentDocument);
     </script>
   </body>
 </html>
