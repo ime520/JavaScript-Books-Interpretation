@@ -4,39 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style></style>
+    <script>
+      console.log("开始执行顶部脚本了！");
+      function handleLinkLoaded() {
+        console.log("样式加载完成");
+      }
+      window.addEventListener(
+        "load",
+        () => {
+          console.log("整个页面（包含资源）加载完成");
+        },
+        false
+      );
+      window.addEventListener(
+        "DOMContentLoaded",
+        () => {
+          console.log("DOM加载完成了！");
+        },
+        false
+      );
+    </script>
+    <link
+      rel="stylesheet"
+      href="http://at.alicdn.com/t/font_271071_xmzhbra9bnd.css"
+      onload="handleLinkLoaded()"
+    />
   </head>
   <body>
     <script>
-      var values = [3, 4, 5],
-        weights = [2, 3, 4],
-        capacity = 5,
-        n = values.length;
-      console.log(knapSack(capacity, weights, values, n)); //输出 7
-      function knapSack(capacity, weights, values, n) {
-        var kS = [];
-        var i = 0;
-        var w;
-        var a;
-        var b;
-        for (i = 0; i <= n; i++) {
-          kS[i] = [];
-        }
-        for (i = 0; i <= n; i++) {
-          for (w = 0; w <= capacity; w++) {
-            if (i === 0 || w === 0) {
-              kS[i][w] = 0;
-            } else if (weights[i - 1] <= w) {
-              a = values[i - 1] + kS[i - 1][w - weights[i - 1]];
-              b = kS[i - 1][w];
-              kS[i][w] = Math.max(a, b);
-            } else {
-              kS[i][w] = kS[i - 1][w];
-            }
-          }
-        }
-        return kS[n][capacity];
-      }
+      console.log("开始执行底部脚本了！");
     </script>
   </body>
 </html>
