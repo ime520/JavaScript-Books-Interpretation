@@ -4,35 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script>
-      console.log("开始执行顶部脚本了！");
-      function handleLinkLoaded() {
-        console.log("样式加载完成");
-      }
-      window.addEventListener(
-        "load",
-        () => {
-          console.log("整个页面（包含资源）加载完成");
-        },
-        false
-      );
-      window.addEventListener(
-        "DOMContentLoaded",
-        () => {
-          console.log("DOM加载完成了！");
-        },
-        false
-      );
-    </script>
-    <link
-      rel="stylesheet"
-      href="http://at.alicdn.com/t/font_271071_xmzhbra9bnd.css"
-      onload="handleLinkLoaded()"
-    />
   </head>
   <body>
     <script>
-      console.log("开始执行底部脚本了！");
+      const PEDNDING = "pending";
+      const FULFILLED = "fulfiled";
+      const REJECTED = "rejected";
+      function Promise(executor) {
+        let self = this;
+        self.status = PEDNDING;
+        self.onFulfiled = [];
+        self.onRejected = [];
+        function resolve(value) {
+          if (self.status === PEDNDING) {
+            self.status = FULFILLED;
+            self.value = value;
+            this.onFulfiled.forEach((fn) => fn());
+          }
+        }
+        function reject(reason) {
+          if (self.status === PEDNDING) {
+            self.status = REJECTED;
+            self.reason = reason;
+            this.onRejected.forEach((fn) => {
+              fn();
+            });
+          }
+        }
+        try {
+          executor(resolve, reject);
+        } catch (err) {
+          reject(err);
+        }
+      }
+      Promise.prototype.then = function (onFulfiled, onRejected) {};
     </script>
   </body>
 </html>
