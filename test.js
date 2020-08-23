@@ -3,3 +3,4 @@ function transform(url) {
 }
 
 // transform('http://www.aaa.com?a=1&b=2&c=3');
+// test
